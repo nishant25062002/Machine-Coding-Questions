@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Counter.css";
-const InputField = ({ disabled, placeholder, type, value, onChange }) => (
+
+const InputField = ({ disabled, placeholder, type, onChange }) => (
   <input
     disabled={disabled}
     placeholder={placeholder}
     type={type}
-    value={value}
     onChange={(e) => onChange(Math.max(0, parseInt(e.target.value) || 0))}
     aria-label={placeholder}
   />
@@ -13,9 +13,9 @@ const InputField = ({ disabled, placeholder, type, value, onChange }) => (
 
 const Counter = () => {
   const [start, setStart] = useState(false);
-  const [hour, setHour] = useState('');
-  const [minute, setMinute] = useState('');
-  const [second, setSecond] = useState('');
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [second, setSecond] = useState(0);
 
   useEffect(() => {
     if (!start) return;
@@ -40,59 +40,61 @@ const Counter = () => {
 
   const handleStart = () => {
     if (hour > 0 || minute > 0 || second > 0) setStart(true);
+    else alert("Invalid Time!");
   };
 
   const handleReset = () => {
-    setHour('');
-    setMinute('');
-    setSecond('');
+    setHour(0);
+    setMinute(0);
+    setSecond(0);
     setStart(false);
   };
 
   return (
     <div className="counter">
       <h1>Counter Timer</h1>
-      <div className="counterInput">
-        <InputField
-          disabled={start}
-          placeholder="hour"
-          value={hour}
-          onChange={setHour}
-        />
-        <InputField
-          disabled={start}
-          placeholder="minute"
-          value={minute}
-          onChange={setMinute}
-        />
-        <InputField
-          disabled={start}
-          placeholder="second"
-          value={second}
-          onChange={setSecond}
-        />
+      {!start ? (
+        <div className="counterInput">
+          <InputField disabled={start} placeholder="HH" onChange={setHour} />
+          <InputField
+            disabled={start}
+            placeholder="MM"
+            onChange={setMinute}
+          />
+          <InputField
+            disabled={start}
+            placeholder="SS"
+            onChange={setSecond}
+          />
 
-        {start ? (
-          <button onClick={() => setStart(false)} className="pauseBtn">
-            Pause
-          </button>
-        ) : (
           <button onClick={handleStart} className="startBtn">
             Start
           </button>
-        )}
-
-        {(hour > 0 || minute > 0 || second > 0) && (
-          <button onClick={handleReset} className="resetBtn">
-            Reset
-          </button>
-        )}
-      </div>
-
-      <div className="counterShow" aria-live="polite">
-        {String(hour).padStart(2, "0")} : {String(minute).padStart(2, "0")} :{" "}
-        {String(second).padStart(2, "0")}
-      </div>
+        </div>
+      ) : (
+        <div>
+          <div className="counterShow" aria-live="polite">
+            {String(hour).padStart(2, "0")} : {String(minute).padStart(2, "0")}{" "}
+            : {String(second).padStart(2, "0")}
+            <div className="counterBtn">
+              {start ? (
+                <button onClick={() => setStart(false)} className="pauseBtn">
+                  Pause
+                </button>
+              ) : (
+                <button onClick={handleStart} className="startBtn">
+                  Resume
+                </button>
+              )}
+              {(hour > 0 || minute > 0 || second > 0) && (
+                <button onClick={handleReset} className="resetBtn">
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

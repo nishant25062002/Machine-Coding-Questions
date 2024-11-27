@@ -1,0 +1,34 @@
+.faqs {
+  padding: 12px 20px;
+}
+
+.faqs > h1 {
+  font-size: 32px;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.question {
+  display: flex;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.downIcon {
+  rotate: 90deg;
+  height: fit-content;
+  width: fit-content;
+}
+
+.answer {
+  display: flex;
+  font-weight: 500;
+  font-size: 14px;
+  padding-left: 12px;
+  color: rgb(126, 126, 126);
+}

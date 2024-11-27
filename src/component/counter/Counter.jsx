@@ -13,12 +13,13 @@ const InputField = ({ disabled, placeholder, type, onChange }) => (
 
 const Counter = () => {
   const [start, setStart] = useState(false);
+  const [pause, setPause] = useState(false);
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start || pause) return;
 
     const timerId = setTimeout(() => {
       if (second > 0) {
@@ -36,7 +37,7 @@ const Counter = () => {
     }, 1000);
 
     return () => clearTimeout(timerId);
-  }, [second, start, minute, hour]);
+  }, [second, start, minute, hour, pause]);
 
   const handleStart = () => {
     if (hour > 0 || minute > 0 || second > 0) setStart(true);
@@ -56,16 +57,8 @@ const Counter = () => {
       {!start ? (
         <div className="counterInput">
           <InputField disabled={start} placeholder="HH" onChange={setHour} />
-          <InputField
-            disabled={start}
-            placeholder="MM"
-            onChange={setMinute}
-          />
-          <InputField
-            disabled={start}
-            placeholder="SS"
-            onChange={setSecond}
-          />
+          <InputField disabled={start} placeholder="MM" onChange={setMinute} />
+          <InputField disabled={start} placeholder="SS" onChange={setSecond} />
 
           <button onClick={handleStart} className="startBtn">
             Start
@@ -77,12 +70,12 @@ const Counter = () => {
             {String(hour).padStart(2, "0")} : {String(minute).padStart(2, "0")}{" "}
             : {String(second).padStart(2, "0")}
             <div className="counterBtn">
-              {start ? (
-                <button onClick={() => setStart(false)} className="pauseBtn">
+              {!pause ? (
+                <button onClick={() => setPause(!pause)} className="pauseBtn">
                   Pause
                 </button>
               ) : (
-                <button onClick={handleStart} className="startBtn">
+                <button onClick={() => setPause(!pause)} className="startBtn">
                   Resume
                 </button>
               )}

@@ -1,5 +1,8 @@
 .faqs {
   padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .faqs > h1 {
@@ -9,20 +12,29 @@
 .faq {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px 30px;
+  background: #eeeeee;
+  border-radius: 8px;
 }
 
 .question {
   display: flex;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
+}
+
+.question > span {
+  padding-left: 12px;
+}
+
+.icon {
+  height: fit-content;
+  width: fit-content;
 }
 
 .downIcon {
   rotate: 90deg;
-  height: fit-content;
-  width: fit-content;
 }
 
 .answer {
@@ -31,4 +43,5 @@
   font-size: 14px;
   padding-left: 12px;
   color: rgb(126, 126, 126);
+  padding-top: 8px;
 }

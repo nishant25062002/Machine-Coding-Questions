@@ -7,8 +7,8 @@ const Faq = (props) => {
   return (
     <div className="faq">
       <div onClick={() => setShow(!show)} className="question">
-        {!show ? <div>{">"}</div> : <div className="downIcon">{">"}</div>}
-        {question}
+        <div className={!show ? "icon" : "icon downIcon"}>{">"}</div>
+        <span>{question}</span>
       </div>
       {show && <div className="answer">{answer}</div>}
     </div>

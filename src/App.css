@@ -1,10 +1,11 @@
-button{
+button {
   height: 32px;
   padding: 0 20px;
   outline: none;
   border: none;
   border-radius: 4px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* .App {

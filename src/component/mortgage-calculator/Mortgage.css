@@ -1,0 +1,47 @@
+.mortgage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background: #c4fbe9;
+  height: 100vh;
+  width: 100vw;
+}
+
+.mortgageBox {
+  display: flex;
+  flex-direction: column;
+  padding: px 40px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: fit-content;
+  background: #fff;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+.inputField > div {
+  padding-bottom: 8px;
+  color: #3b3b3b;
+  font-weight: bold;
+}
+
+.inputField > input {
+  width: full;
+  height: 32px;
+  padding: 2px 4px;
+}
+
+.mortgageText {
+  color: rgb(3, 116, 147);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 22px 0;
+}

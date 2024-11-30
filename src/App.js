@@ -5,6 +5,7 @@ import Faqs from "./component/faq/Faqs";
 import Mortgage from "./component/mortgage-calculator/Mortgage";
 import Comments from "./component/recursive-comments/Comments";
 import Hooks from "./component/examples/Hooks";
+import PromiseExample from "./component/examples/Promise";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="counter-time" element={<Counter />} />
         <Route path="hook-example" element={<Hooks />} />
+        <Route path="promise-example" element={<PromiseExample />} />
         <Route path="comments" element={<Comments />} />
         <Route path="mortgage-calculator" element={<Mortgage />} />
         <Route path="faqs" element={<Faqs />} />
